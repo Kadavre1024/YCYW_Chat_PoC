@@ -1,0 +1,13 @@
+<div class="title">
+    <h1 class="title">Connexion</h1>
+</div>
+<div class="center">
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+            <div><input class="form-field" placeholder="Email" formControlName="email"></div>
+            <div><input class="form-field" placeholder="Mot de passe" formControlName="password"></div>
+            <div><button class="submit form-field submit-btn" color="primary" type="submit" [disabled]="form.invalid">
+                <span>Se connecter</span>
+            </button></div>
+            <div><span *ngIf="onError" class="error">Une erreur s'est produite</span></div>
+    </form>
+</div>

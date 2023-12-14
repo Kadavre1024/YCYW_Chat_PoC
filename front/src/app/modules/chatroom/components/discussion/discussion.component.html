@@ -1,0 +1,15 @@
+<h1 class="title">ChatRoom</h1>
+<app-create-discussion></app-create-discussion>
+<h2 class="title">Liste des discussions précédentes</h2>
+<div style="display: block;">
+    <div style="display: grid; grid-template-columns:auto auto auto; text-align: center;">
+        <div class="chat-card" *ngFor="let discussion of chatRooms$|async" (click)="loadDiscussion(discussion.id)">
+            <p class="chat-subject">{{discussion.subject}}</p>
+            <p class="chat-details">créé le : {{discussion.createdAt|date:'dd/MM/yyyy HH:mm'}}</p>
+            <p class="chat-details" *ngIf="userAuthority==='SUPPORT'">User ID : {{discussion.clientUserId}}</p>
+        </div>
+    </div>
+</div>
+
+
+

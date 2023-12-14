@@ -1,0 +1,15 @@
+<div class="title">
+    <h1 class="title">Inscription</h1>
+</div>
+<div class="center">
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+            <input class="form-field" placeholder="Prénom" formControlName="firstName">
+            <input class="form-field" placeholder="Nom" formControlName="lastName">
+            <input class="form-field" placeholder="Email" formControlName="email">
+            <input class="form-field" placeholder="Mot de passe" formControlName="password">
+        <button class="submit form-field submit-btn" color="primary" type="submit" [disabled]="form.invalid">
+            <span>S'inscrire</span>
+        </button>
+        <span *ngIf="onError" class="error">Une erreur s'est produite</span>
+    </form>
+</div>

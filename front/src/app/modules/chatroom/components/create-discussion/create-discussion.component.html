@@ -1,0 +1,11 @@
+<div>
+    <h2 class="subtitle">Vous rencontrez un problème ou souhaitez avoir plus d'informations sur notre service ? Contactez dès maintenant notre service support !</h2>
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()" value="">
+            <select formControlName="subjectPart1">
+                <option value="">--Please choose an option--</option>
+                <option value="Problème technique">Un problème technique</option>
+                <option value="Demande d'informations complémentaires">Des informations avant de réserver</option>
+            </select>
+            <button class="submit-btn" type="submit" [disabled]="!form.valid">Démarrer le chat</button>
+    </form>
+</div>
