@@ -36,9 +36,13 @@ The JWT secret key is a 64 characters key and initialized in environnement varia
 
 Create database using the SQL script. Next, create a database user account :
 > create user 'name_of_user'@'%' identified by 'password_of_user';
+
 > grant all on ocow_db.* to 'name_of_user'@'%';
 
 ### Back-End
+
+Build the application using the maven command line :
+> mvn clean install -Dspring.datasource.username=name_of_user -Dspring.datasource.password=password_of_user -Djwt.secretKey=64_chars_secret_key
 
 Launch .jar file inside `back/target`
 > java -jar -Dspring.datasource.username=name_of_user -Dspring.datasource.password=password_of_user -Djwt.secretKey=64_chars_secret_key back-0.0.1-SNAPSHOT.jar
