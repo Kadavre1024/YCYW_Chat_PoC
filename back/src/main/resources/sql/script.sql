@@ -3,8 +3,7 @@ USE ycyw_db;
 CREATE TABLE `VEHICLE_CATEGORIES` (
   `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
   `category` VARCHAR(10),
-  `name` VARCHAR(20),
-  `price_per_day` INT
+  `name` VARCHAR(20)
 );
 
 CREATE TABLE `RENTALS` (
