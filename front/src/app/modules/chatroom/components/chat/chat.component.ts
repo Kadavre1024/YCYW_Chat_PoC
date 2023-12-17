@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { WsMessage } from 'src/app/core/models/WsMessage';
 import { Chat } from 'src/app/core/models/chat.model';
 import { ChatService } from 'src/app/core/services/chat.service';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map, of, tap } from 'rxjs';
 import { Message } from 'src/app/core/models/Message';
 import { SessionService } from 'src/app/core/services/session.service';
 import { Discussion } from 'src/app/core/models/Discussion';
@@ -30,7 +30,8 @@ export class ChatComponent implements OnInit, OnDestroy {
     message:""
   };
   private ws!:WebSocket;
-  public messages$:Observable<Message[]> = this.chatService.getMessageListByDiscussionId(`${this.chatRoomId}`)
+  public messages$:Observable<Message[]> = this.chatService.getMessageListByDiscussionId(`${this.chatRoomId}`);
+  public newMessages$:Observable<Message[]> = of([]);
 
   constructor(private route:ActivatedRoute,
               private chatService:ChatService,
@@ -59,8 +60,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         console.log("stompClient connected")
         if(msg.body){
           const message:Message = JSON.parse(msg.body);
-          this.messages$.pipe(map(msg=>{msg.push(message);
-          return msg}));
           this.messages$=this.chatService.getMessageListByDiscussionId(`${this.chatRoomId}`);
           console.log(message.message);
         }

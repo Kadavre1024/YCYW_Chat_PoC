@@ -14,6 +14,7 @@ import { SessionService } from 'src/app/core/services/session.service';
 export class CreateDiscussionComponent {
 
   public onError:boolean = false;
+  public onCreated:boolean = false;
   public form:FormGroup = this.fb.group({
     subjectPart1: [null, Validators.min(3)],
   });

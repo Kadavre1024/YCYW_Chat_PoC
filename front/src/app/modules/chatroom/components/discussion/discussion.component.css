@@ -9,7 +9,7 @@
     width:50%
 }
 .chat-card{
-    background-color: rgb(172, 173, 255);
+    /*background-color: rgb(172, 173, 255);
     border-radius: 5px 5px;
     border-color: black;
     padding: 2px;
@@ -17,6 +17,16 @@
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
-    text-align: center;
+    width: auto;
+    text-align: center;*/
+    order: 1;
+    border-bottom-right-radius: 0px;
+    box-shadow: 1px 2px 0px #D4D4D4;
+    background: rgb(203, 202, 202);
+    min-width: 50px;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.07);
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

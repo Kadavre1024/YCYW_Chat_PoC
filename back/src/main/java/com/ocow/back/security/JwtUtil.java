@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -15,10 +16,10 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 @Component
-//@ConfigurationProperties(prefix = "jwt")
+@ConfigurationProperties(prefix = "jwt")
 public class JwtUtil {
 
-	private String secretKey = "5486921375896201458967236589124758692384105687951203567491287536";//Secret key : 64 chars
+	private String secretKey;//Secret key : 64 chars
 
   public String extractUsername(String token) {
       return extractClaim(token, Claims::getSubject);

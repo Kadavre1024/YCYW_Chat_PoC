@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ocow.back.service.RentalService;
+//import com.ocow.back.service.RentalService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+/**@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("api/rental")
 public class RentalController {
@@ -22,4 +22,4 @@ public class RentalController {
 	private ResponseEntity<?> findAllByClientId(@PathVariable("id") String id){
 		return ResponseEntity.ok(this.rentalService.findAllByClientUserId(Long.valueOf(id)));
 	}
-}
+}**/

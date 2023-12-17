@@ -21,7 +21,6 @@ import com.ocow.back.model.Discussion;
 import com.ocow.back.payload.DiscussionRequest;
 import com.ocow.back.service.ClientUserService;
 import com.ocow.back.service.DiscussionService;
-import com.ocow.back.service.RentalService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -35,9 +34,6 @@ public class DiscussionController {
 	private ClientUserService clientUserService;
 	
 	@Autowired
-	private RentalService rentalService;
-	
-	@Autowired
 	private DiscussionMapper discMapper;
 
 	@PostMapping
@@ -45,7 +41,7 @@ public class DiscussionController {
 		Discussion newChatRoom = new Discussion(
 				clientUserService.findById(discussion.getClientUserId()), 
 				discussion.getSubject()
-				);//rentalService.findById(discussion.getRentalId())
+				);
 		
 		DiscussionDto res = this.discMapper.toDto(this.discService.create(newChatRoom));
 		return ResponseEntity.accepted().body(res);

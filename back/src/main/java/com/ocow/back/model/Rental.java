@@ -31,13 +31,13 @@ public class Rental {
 	@Column(name = "start_day")
 	private LocalDate startDay;
 	
-	@Column(name = "end_day")
-	private LocalDate endDay;
+	@Column(name = "day_nb")
+	private Integer dayNb;
 	
 	@NonNull
 	@OneToOne
-	@JoinColumn(name = "vehicle_category_id", referencedColumnName = "id")
-	private VehicleCategory vehicleCategory;
+	@JoinColumn(name = "offer_id", referencedColumnName = "id")
+	private Offer offer;
 	
 	@NonNull
 	@ManyToOne
@@ -45,13 +45,8 @@ public class Rental {
 	private ClientUser clientUser;
 	
 	@NonNull
-	@OneToOne
-	@JoinColumn(name = "agency_start_id", referencedColumnName = "id")
-	public Agency agencyStart;
-	
-	@NonNull
 	@ManyToOne
-	@JoinColumn(name = "agency_end_id", referencedColumnName = "id")
+	@JoinColumn(name = "agency_id_end", referencedColumnName = "id")
 	public Agency agencyEnd;
 	
 	@Column(name = "rental_price")

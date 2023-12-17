@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './modules/home/component/home/home.component';
-import { DiscussionListComponent } from './modules/chatroom/components/discussion-list/discussion-list.component';
 import { CreateDiscussionComponent } from './modules/chatroom/components/create-discussion/create-discussion.component';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
@@ -22,7 +21,6 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
     DiscussionComponent,
     ChatComponent,
     HomeComponent,
-    DiscussionListComponent,
     CreateDiscussionComponent
   ],
   imports: [

@@ -35,7 +35,7 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 	        registry.addEndpoint("/socket")
 	                .setAllowedOriginPatterns("*")
 	                .withSockJS();
-	        registry.addEndpoint("/ws");
+	        //registry.addEndpoint("/ws");
 	    }
 
 	    @Override
@@ -46,13 +46,11 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 	    
 	    @Override
 	    public void configureClientInboundChannel(ChannelRegistration registration) {
-	    	System.out.println("configureClientInboundChannel");
 	        registration.interceptors(new ChannelInterceptor() {
 	            @Override
 	            public Message<?> preSend(Message<?> message, MessageChannel channel) {
 	                StompHeaderAccessor accessor =
 	                        MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
-	                System.out.println("Headers: "+accessor);
 
 	                assert accessor != null;
 	                if (StompCommand.CONNECT.equals(accessor.getCommand())) {
@@ -62,7 +60,6 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 	                    String token = authorizationHeader.substring(6);
 
 	                    String username = jwtTokenUtil.extractUsername(token);
-	                    System.out.println("username: "+username);
 	                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 	                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 	                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { HomeComponent } from './modules/home/component/home/home.component';
-import { CreateDiscussionComponent } from './modules/chatroom/components/create-discussion/create-discussion.component';
 import { ChatComponent } from './modules/chatroom/components/chat/chat.component';
 import { DiscussionComponent } from './modules/chatroom/components/discussion/discussion.component';
 import { UnauthGuard } from './core/guards/unauth.guard';
