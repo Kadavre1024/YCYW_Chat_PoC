@@ -88,3 +88,6 @@ ALTER TABLE `RENTALS` ADD FOREIGN KEY (`agency_id_end`) REFERENCES `AGENCIES` (`
 ALTER TABLE `RENTALS` ADD FOREIGN KEY (`offer_id`) REFERENCES `OFFERS` (`id`);
 ALTER TABLE `OFFERS` ADD FOREIGN KEY (`agency_id`) REFERENCES `AGENCIES` (`id`);
 ALTER TABLE `OFFERS` ADD FOREIGN KEY (`vehicle_category_id`) REFERENCES `VEHICLE_CATEGORIES` (`id`);
+
+INSERT INTO SUPPORT_USERS (first_name, last_name, email, password)
+VALUES ('Admin', 'admin', 'admin@email.com', '$2a$10$KemtyIIZ3XSAZJtb6glIN.bqEyYzkmtQxmSHpeE/URhYpdFQQ9az.');

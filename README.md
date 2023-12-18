@@ -60,7 +60,7 @@ Launch Front-end in developpment environnement:
 
 After lauchning, go to `http://localhost:4200/` and create a client user account. After account creation, you will be redirected to the client user login page to log in. Next, create a new discussion by choosing the subject and click on the create button. This redirect to the chat and then you can start to write messages.
 
-In the same time, go to `http://localhost:4200/login/support`. Log to the support user account with email : `support@ycyw.com` and password : `Support!Test123`. Next, click on a discussion and start to chat with client user.
+In the same time, go to `http://localhost:4200/login/support`. Log to the support user account with email : `admin@email.com` and password : `Admin!test1234`. Next, click on a discussion and start to chat with client user.
 
 
 
