@@ -1,12 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs'
 import * as $ from 'jquery'
 import { ActivatedRoute } from '@angular/router';
 import { WsMessage } from 'src/app/core/models/WsMessage';
-import { Chat } from 'src/app/core/models/chat.model';
 import { ChatService } from 'src/app/core/services/chat.service';
-import { Observable, map, of, tap } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Message } from 'src/app/core/models/Message';
 import { SessionService } from 'src/app/core/services/session.service';
 import { Discussion } from 'src/app/core/models/Discussion';
@@ -30,8 +29,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     message:""
   };
   private ws!:WebSocket;
-  public messages$:Observable<Message[]> = this.chatService.getMessageListByDiscussionId(`${this.chatRoomId}`);
-  public newMessages$:Observable<Message[]> = of([]);
+  public messages:Message[]=[];
 
   constructor(private route:ActivatedRoute,
               private chatService:ChatService,
@@ -40,7 +38,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.messages$= this.chatService.getMessageListByDiscussionId(`${this.chatRoomId}`)
+    this.chatService.getMessageListByDiscussionId(`${this.chatRoomId}`).pipe(take(1)).subscribe((x:Message[])=> this.messages=x)
   }
 
   public back() {
@@ -56,12 +54,11 @@ export class ChatComponent implements OnInit, OnDestroy {
       Authorization : this.sessionService.sessionInformation!.type + this.sessionService.sessionInformation!.token
     }
     this.stompClient.connect(headers, () => {
-      that.stompClient!.subscribe(`/ws`, (msg:any) => {
+      that.stompClient!.subscribe(`/ws/send/${this.chatRoomId}`, (msg:any) => {
         console.log("stompClient connected")
         if(msg.body){
           const message:Message = JSON.parse(msg.body);
-          this.messages$=this.chatService.getMessageListByDiscussionId(`${this.chatRoomId}`);
-          console.log(message.message);
+          this.messages.push(message);
         }
         console.log(msg.body);
       });
@@ -80,16 +77,19 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.wsMessage.message = message;
     console.log("sended");
 
-    this.stompClient!.send(`/app/send/${this.chatRoomId}`, {},  JSON.stringify(this.wsMessage));
+    this.stompClient!.send(`/send/${this.chatRoomId}`, {},  JSON.stringify(this.wsMessage));
     $("#input").val("");
   }
 
   ngOnDestroy(): void {
-    this.stompClient?.disconnect(() => {});
+    this.stompClient?.disconnect(() => {
+      this.stompClient?.ws.close();
+      this.stompClient = undefined;
+    });
     this.ws.close();
   }
   public isOwnMessage(message:Message):string{
-    if(message.clientUserId == this.sessionService.sessionInformation!.id || (message.supportUserId === this.sessionService.sessionInformation!.id && this.sessionService.sessionInformation!.authorities[0].authority === "SUPPORT")){
+    if((message.clientUserId === this.sessionService.sessionInformation!.id && this.sessionService.sessionInformation!.authorities[0].authority === "USER") || (message.supportUserId === this.sessionService.sessionInformation!.id && this.sessionService.sessionInformation!.authorities[0].authority === "SUPPORT")){
       return "right";
     }
     return "left";

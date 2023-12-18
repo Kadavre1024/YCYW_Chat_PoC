@@ -37,7 +37,7 @@ The JWT secret key is a 64 characters key and initialized in environnement varia
 Create database using the SQL script. Next, create a database user account :
 > create user 'name_of_user'@'%' identified by 'password_of_user';
 
-> grant all on ocow_db.* to 'name_of_user'@'%';
+> grant all on ycyw_db.* to 'name_of_user'@'%';
 
 ### Back-End
 

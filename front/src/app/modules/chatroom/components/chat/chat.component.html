@@ -2,7 +2,7 @@
 <button style="position: absolute; top:30px; left:10px" (click)="back()">Retour</button>
 <div style="text-align:center; background-color: #d8d2d2;">
   <ol class="discussion">
-        <li [ngClass]="isOwnMessage(message)" *ngFor="let message of messages$|async">
+        <li [ngClass]="isOwnMessage(message)" *ngFor="let message of messages">
           <table class="msg">
             <tr><td><p class="message-body">{{message.message}}</p></td></tr>
             <tr><td><time>{{message.createdAt|date: 'HH:mm'}}</time></td></tr>

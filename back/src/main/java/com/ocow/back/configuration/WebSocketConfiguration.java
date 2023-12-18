@@ -35,13 +35,11 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 	        registry.addEndpoint("/socket")
 	                .setAllowedOriginPatterns("*")
 	                .withSockJS();
-	        //registry.addEndpoint("/ws");
 	    }
 
 	    @Override
 	    public void configureMessageBroker(MessageBrokerRegistry registry) {
-	        registry.setApplicationDestinationPrefixes("/app")
-	                .enableSimpleBroker("/ws");
+	        registry.enableSimpleBroker("/ws");
 	    }
 	    
 	    @Override
